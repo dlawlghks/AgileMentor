@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const GoogleLoginButton = () => {
   const handleLoginClick = () => {
-    document.location.assign('https://api.agilementor.kr/api/auth/login');
+    window.location.href = 'https://api.agilementor.kr/api/auth/login';
   };
 
   return (
