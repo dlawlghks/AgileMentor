@@ -3,10 +3,7 @@ import styled from 'styled-components';
 
 const GoogleLoginButton = () => {
   const handleLoginClick = () => {
-    const googleOAuthURL = 'https://api.agilementor.kr/api/auth/login';
-
-    // 브라우저가 직접 리디렉션 처리
-    document.location.href = googleOAuthURL;
+    document.location.assign('https://api.agilementor.kr/api/auth/login');
   };
 
   return (
@@ -32,6 +29,6 @@ const GoogleButton = styled.button`
 `;
 
 const GoogleImage = styled.img`
-  width: 160px;
+  width: 140px;
   height: 40px;
 `;
