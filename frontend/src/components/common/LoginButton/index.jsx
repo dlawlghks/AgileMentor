@@ -1,33 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
 const GoogleLoginButton = () => {
-  const handleLoginClick = async () => {
-    try {
-      const response = await axios.get(
-        'https://api.agilementor.kr/api/auth/login',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
+  const handleLoginClick = () => {
+    const googleOAuthURL = 'https://api.agilementor.kr/api/auth/login';
 
-      if (response.status === 200) {
-        const { data } = response;
-        if (data && data.redirectUrl) {
-          // 리디렉션 처리
-          document.location.href = data.redirectUrl;
-        } else {
-          console.error('Invalid response format:', data);
-        }
-      } else {
-        console.error('Failed to initiate login process:', response.status);
-      }
-    } catch (error) {
-      console.error('An error occurred while initiating login process:', error);
-    }
+    // 브라우저가 직접 리디렉션 처리
+    document.location.href = googleOAuthURL;
   };
 
   return (
@@ -53,6 +32,6 @@ const GoogleButton = styled.button`
 `;
 
 const GoogleImage = styled.img`
-  width: 140px;
+  width: 160px;
   height: 40px;
 `;
