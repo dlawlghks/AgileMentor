@@ -1,23 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const GoogleLoginButton = () => {
   const handleLoginClick = async () => {
     try {
-      const response = await fetch(
+      const response = await axios.get(
         'https://api.agilementor.kr/api/auth/login',
         {
-          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         },
       );
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const { data } = response;
         if (data && data.redirectUrl) {
-          window.location.href = data.redirectUrl;
+          // 리디렉션 처리
+          document.location.href = data.redirectUrl;
         } else {
           console.error('Invalid response format:', data);
         }
