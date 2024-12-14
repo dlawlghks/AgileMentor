@@ -1,9 +1,9 @@
 // config-overrides.js
 const path = require('path');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { override, addWebpackAlias, addBabelPlugin } = require('customize-cra');
 
 module.exports = override(
+  // Webpack Alias 설정
   addWebpackAlias({
     '@components': path.resolve(__dirname, 'src/components'),
     '@features': path.resolve(__dirname, 'src/components/features'),
@@ -11,5 +11,6 @@ module.exports = override(
     '@pages': path.resolve(__dirname, 'src/pages'),
     '@routes': path.resolve(__dirname, 'src/routes'),
   }),
-  addBabelPlugin('@babel/plugin-proposal-private-property-in-object'),
+  // Babel 플러그인 추가
+  addBabelPlugin('@babel/plugin-proposal-private-property-in-object')
 );

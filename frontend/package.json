@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "CI=false react-scripts build",
     "test": "react-app-rewired test"
   },
   "eslintConfig": {
@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@eslint/js": "^9.12.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "customize-cra": "^1.0.0",
