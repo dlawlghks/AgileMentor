@@ -63,5 +63,8 @@
     "eslint-plugin-styled-components": "^0.0.0",
     "globals": "^15.11.0",
     "react-app-rewired": "^2.2.1"
-  }
+  },
+  "engines": {
+  "node": ">=14"
+}
 }
