@@ -13,6 +13,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-warning-comments": "off",
     "no-use-before-define": "off",
     "arrow-body-style": ["error", "as-needed"],
     "requireReturnForObjectLiteral": 0,
