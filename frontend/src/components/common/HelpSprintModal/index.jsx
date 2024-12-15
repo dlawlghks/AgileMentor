@@ -38,7 +38,11 @@ const HelpSprintModal = ({ onCancel }) => (
         </Section>
         <Section>
           <FeatureTitle>기능 3 - 스토리 이용</FeatureTitle>
-          <Image src="/image/story.png" alt="story" />
+          <Image
+            src="/image/story.png"
+            alt="story"
+            style={{ height: '300px', width: '160px' }}
+          />
           <Description>
             스토리 컨테이너에서 스토리를 관리할 수 있습니다.
           </Description>
