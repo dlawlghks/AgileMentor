@@ -119,7 +119,7 @@ const CardsContainer = styled.div`
   margin-right: 20px;
 `;
 
-const ImagePlaceholder = styled.div`
+const ImagePlaceholder = styled.img`
   flex: 2;
   max-width: 880px;
   width: 100%;
