@@ -5,7 +5,7 @@ import { Common } from '@styles/globalStyle';
 
 export const HEADER_HEIGHT = '9vh';
 
-const Header = () => (
+const IntroduceHeader = () => (
   <HeaderContainer>
     <LogoContainer>
       <LogoImage src="/image/logo.png" alt="Agile Mentor Logo" />
@@ -15,7 +15,7 @@ const Header = () => (
   </HeaderContainer>
 );
 
-export default Header;
+export default IntroduceHeader;
 
 const HeaderContainer = styled.header`
   display: flex;
