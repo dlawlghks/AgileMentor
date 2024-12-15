@@ -6,8 +6,11 @@ import { useProjects } from '../../../provider/projectContext';
 import DeleteConfirmModal from '../DeleteConfirmModal';
 
 const ProjectSettingModal = ({ onCancel }) => {
-  const { selectedProjectId, projects, fetchProjects, fetchMembers, setSelectedProjectId } = useProjects();
-  const selectedProject = projects.find((project) => project.projectId === selectedProjectId);
+  const { selectedProjectId, projects, fetchProjects, setSelectedProjectId } =
+    useProjects();
+  const selectedProject = projects.find(
+    (project) => project.projectId === selectedProjectId,
+  );
   const initialProjectName = selectedProject?.title || '프로젝트 이름 없음';
 
   const [projectName, setProjectName] = useState(initialProjectName);
@@ -22,7 +25,7 @@ const ProjectSettingModal = ({ onCancel }) => {
       await axios.put(
         `https://api.agilementor.kr/api/projects/${selectedProjectId}`,
         { title: projectName },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       alert('프로젝트 이름이 성공적으로 변경되었습니다.');
       fetchProjects();
@@ -43,11 +46,10 @@ const ProjectSettingModal = ({ onCancel }) => {
     try {
       await axios.delete(
         `https://api.agilementor.kr/api/projects/${selectedProjectId}`,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       alert('프로젝트가 성공적으로 삭제되었습니다.');
-      setSelectedProjectId(null); 
-      fetchMembers(null);
+      setSelectedProjectId(null);
       fetchProjects();
       setIsDeleteModalOpen(false);
       onCancel();
@@ -71,16 +73,17 @@ const ProjectSettingModal = ({ onCancel }) => {
             />
             <DeleteSection>
               <DeleteLabel>프로젝트 삭제하기</DeleteLabel>
-              <DeleteButton onClick={handleDelete}>
-                삭제하기
-              </DeleteButton>
+              <DeleteButton onClick={handleDelete}>삭제하기</DeleteButton>
             </DeleteSection>
           </ModalBody>
           <ModalFooter>
             <CancelButton onClick={onCancel} disabled={isSaving}>
               취소
             </CancelButton>
-            <ConfirmButton onClick={handleConfirm} disabled={isSaving || !projectName.trim()}>
+            <ConfirmButton
+              onClick={handleConfirm}
+              disabled={isSaving || !projectName.trim()}
+            >
               {isSaving ? '저장 중...' : '완료'}
             </ConfirmButton>
           </ModalFooter>

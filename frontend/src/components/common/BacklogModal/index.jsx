@@ -5,7 +5,13 @@ import axios from 'axios';
 import { useProjects } from '../../../provider/projectContext';
 
 const BacklogModal = ({ onCancel }) => {
-  const { selectedProjectId, selectedBacklogId, fetchBacklogs, members, fetchStories } = useProjects();
+  const {
+    selectedProjectId,
+    selectedBacklogId,
+    fetchBacklogs,
+    members,
+    fetchStories,
+  } = useProjects();
   const [backlog, setBacklog] = useState(null);
 
   const fetchBacklogDetails = async () => {
@@ -23,14 +29,19 @@ const BacklogModal = ({ onCancel }) => {
       onCancel();
     }
   };
-  
+
   useEffect(() => {
     if (!selectedBacklogId || !selectedProjectId) return;
     fetchBacklogDetails();
   }, [selectedBacklogId, selectedProjectId, onCancel]);
 
   const handleConfirm = async () => {
-    if (!backlog.title || !backlog.description || !backlog.status || !backlog.priority) {
+    if (
+      !backlog.title ||
+      !backlog.description ||
+      !backlog.status ||
+      !backlog.priority
+    ) {
       alert('모든 필수 값을 입력하세요!');
       return;
     }
@@ -85,7 +96,9 @@ const BacklogModal = ({ onCancel }) => {
           <StyledTextArea
             placeholder="백로그 설명을 입력하세요."
             value={backlog.description || ''}
-            onChange={(e) => setBacklog({ ...backlog, description: e.target.value })}
+            onChange={(e) =>
+              setBacklog({ ...backlog, description: e.target.value })
+            }
           />
         </InputContainer>
 
@@ -102,7 +115,7 @@ const BacklogModal = ({ onCancel }) => {
                   })
                 }
               >
-                <option value="none">담당자가 없는 백로그</option>
+                <option value="none">담당자가 없음</option>
                 {members.map((member) => (
                   <option key={member.memberId} value={member.memberId}>
                     {member.name}
@@ -115,7 +128,12 @@ const BacklogModal = ({ onCancel }) => {
               <Label>우선순위 선택</Label>
               <Select
                 value={backlog.priority?.toUpperCase() || ''}
-                onChange={(e) => setBacklog({ ...backlog, priority: e.target.value.toUpperCase() })}
+                onChange={(e) =>
+                  setBacklog({
+                    ...backlog,
+                    priority: e.target.value.toUpperCase(),
+                  })
+                }
               >
                 <option value="MEDIUM">중간</option>
                 <option value="HIGH">높음</option>
@@ -127,7 +145,12 @@ const BacklogModal = ({ onCancel }) => {
               <Label>진행 상태 설정</Label>
               <Select
                 value={backlog.status?.toUpperCase() || ''}
-                onChange={(e) => setBacklog({ ...backlog, status: e.target.value.toUpperCase() })}
+                onChange={(e) =>
+                  setBacklog({
+                    ...backlog,
+                    status: e.target.value.toUpperCase(),
+                  })
+                }
               >
                 {backlog.sprintId === null ? (
                   <>

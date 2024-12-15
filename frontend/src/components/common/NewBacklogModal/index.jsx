@@ -4,16 +4,14 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useProjects } from '../../../provider/projectContext';
 
-const NewBacklogModal = ({
-  onCancel,
-  onConfirm,
-}) => {
-  const { fetchBacklogs, selectedProjectId, members, stories, fetchStories } = useProjects();
+const NewBacklogModal = ({ onCancel, onConfirm }) => {
+  const { fetchBacklogs, selectedProjectId, members, stories, fetchStories } =
+    useProjects();
   const [backlogName, setBacklogName] = useState('');
   const [story, setStory] = useState('');
   const [description, setDescription] = useState('');
   const [assignee, setAssignee] = useState('');
-  const [priority, setPriority] = useState('');
+  const [priority, setPriority] = useState('MEDIUM');
 
   const handleConfirm = async () => {
     if (!backlogName || !description || !priority) {
@@ -40,7 +38,6 @@ const NewBacklogModal = ({
       onConfirm();
       fetchBacklogs(selectedProjectId);
       fetchStories(selectedProjectId);
-      
     } catch (error) {
       console.error('백로그 생성 중 오류:', error);
       alert('백로그 생성에 실패했습니다.');
@@ -64,12 +61,11 @@ const NewBacklogModal = ({
 
         <InputContainer>
           <Label>상위 스토리</Label>
-          <Select
-            value={story}
-            onChange={(e) => setStory(e.target.value)}
-          >
-            <option value="" disabled>선택하기</option>
-            <option value="none">상위 스토리가 없는 백로그</option>
+          <Select value={story} onChange={(e) => setStory(e.target.value)}>
+            <option value="" disabled>
+              선택하기
+            </option>
+            <option value="none">상위 스토리 없음</option>
             {stories.map((s) => (
               <option key={s.storyId} value={s.storyId}>
                 {s.title}
@@ -97,8 +93,10 @@ const NewBacklogModal = ({
                   setAssignee(e.target.value);
                 }}
               >
-                <option value="" disabled>선택하기</option>
-                <option value="none">담당자가 없는 백로그</option>
+                <option value="" disabled>
+                  선택하기
+                </option>
+                <option value="none">담당자 없음</option>
                 {members.map((user) => (
                   <option key={user.memberId} value={user.memberId}>
                     {user.name}
@@ -112,7 +110,6 @@ const NewBacklogModal = ({
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
               >
-                <option value="" disabled>선택하기</option>
                 <option value="HIGH">높음</option>
                 <option value="MEDIUM">중간</option>
                 <option value="LOW">낮음</option>

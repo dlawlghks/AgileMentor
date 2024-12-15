@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // eslint-disable-next-line import/no-unresolved
 import { Common } from '@styles/globalStyle';
-import { Badge, IconButton, Menu, MenuItem, Typography, Divider, Button, Avatar, Box } from '@mui/material';
+import {
+  Badge,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+  Divider,
+  Button,
+  Avatar,
+  Box,
+} from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useProjects } from '../../provider/projectContext';
 
@@ -16,9 +27,12 @@ const Header = () => {
   const [invitations, setInvitations] = useState([]);
   const open = Boolean(anchorEl);
   const profileOpen = Boolean(profileAnchorEl);
+  const navigate = useNavigate();
 
   const removeInvitation = (invitationId) => {
-    setInvitations((prev) => prev.filter((inv) => inv.invitationId !== invitationId));
+    setInvitations((prev) =>
+      prev.filter((inv) => inv.invitationId !== invitationId),
+    );
   };
 
   const handleInvitationAction = async (invitationId, action) => {
@@ -26,7 +40,7 @@ const Header = () => {
       await axios.post(
         `https://api.agilementor.kr/api/invitations/${invitationId}/${action}`,
         {},
-        { withCredentials: true }
+        { withCredentials: true },
       );
       alert(`초대를 ${action === 'accept' ? '수락' : '거절'}했습니다.`);
       removeInvitation(invitationId);
@@ -42,9 +56,12 @@ const Header = () => {
 
   const fetchInvitations = async () => {
     try {
-      const response = await axios.get('https://api.agilementor.kr/api/invitations', {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        'https://api.agilementor.kr/api/invitations',
+        {
+          withCredentials: true,
+        },
+      );
       setInvitations(response.data);
     } catch (error) {
       console.error('초대 데이터를 가져오는 중 오류 발생:', error);
@@ -86,9 +103,13 @@ const Header = () => {
     window.location.href = logoutURL;
   };
 
+  const handleLogoClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <HeaderContainer>
-      <LogoContainer>
+      <LogoContainer onClick={handleLogoClick}>
         <LogoImage src="/image/logo.png" alt="Agile Mentor Logo" />
         <LogoText>Agile Mentor</LogoText>
       </LogoContainer>
@@ -221,7 +242,12 @@ const Header = () => {
                         variant="contained"
                         color="primary"
                         size="small"
-                        onClick={() => handleInvitationAction(invitation.invitationId, 'accept')}
+                        onClick={() =>
+                          handleInvitationAction(
+                            invitation.invitationId,
+                            'accept',
+                          )
+                        }
                       >
                         수락
                       </Button>
@@ -229,7 +255,12 @@ const Header = () => {
                         variant="outlined"
                         color="error"
                         size="small"
-                        onClick={() => handleInvitationAction(invitation.invitationId, 'decline')}
+                        onClick={() =>
+                          handleInvitationAction(
+                            invitation.invitationId,
+                            'decline',
+                          )
+                        }
                       >
                         거절
                       </Button>
@@ -267,6 +298,7 @@ const HeaderContainer = styled.header`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const LogoImage = styled.img`
