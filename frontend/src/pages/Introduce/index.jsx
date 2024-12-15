@@ -55,7 +55,7 @@ const IntroducePage = () => (
             backgroundColor="#FFCADC"
           />
         </CardsContainer>
-        <ImagePlaceholder>이미지 추가 예정</ImagePlaceholder>
+        <ImagePlaceholder src="/image/company.png" />
       </MainContent>
     </ContentContainer>
   </PageContainer>
