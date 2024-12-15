@@ -29,7 +29,7 @@ const OngoingTasksList = () => {
           'https://api.agilementor.kr/api/tasks',
           {
             withCredentials: true,
-          }
+          },
         );
 
         if (response.status === 200) {
@@ -45,7 +45,7 @@ const OngoingTasksList = () => {
     };
 
     fetchTasks();
-  }, []);
+  }, [projects]);
 
   const getProjectName = (projectId) => {
     const project = projects.find((proj) => proj.projectId === projectId);
@@ -66,41 +66,43 @@ const OngoingTasksList = () => {
 
   return (
     <Box>
-      {Object.entries(tasksByProject).map(([projectId, projectTasks], index) => (
-        <Box key={projectId} mb={1.5}>
-          {index > 0 && <Divider sx={{ mb: 1 }} />}
-          <Typography variant="h6" sx={{ mb: 1 }}>
-            {getProjectName(Number(projectId))}
-          </Typography>
-          {projectTasks.map((task) => (
-            <Box
-              key={task.backlogId}
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
-              mb={1}
-            >
-              <Box display="flex" alignItems="center">
-                <CircleIcon
-                  sx={{ color: '#0eaaf9', fontSize: '0.5rem', mr: 1 }}
-                />
+      {Object.entries(tasksByProject).map(
+        ([projectId, projectTasks], index) => (
+          <Box key={projectId} mb={1.5}>
+            {index > 0 && <Divider sx={{ mb: 1 }} />}
+            <Typography variant="h6" sx={{ mb: 1 }}>
+              {getProjectName(Number(projectId))}
+            </Typography>
+            {projectTasks.map((task) => (
+              <Box
+                key={task.backlogId}
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+                mb={1}
+              >
+                <Box display="flex" alignItems="center">
+                  <CircleIcon
+                    sx={{ color: '#0eaaf9', fontSize: '0.5rem', mr: 1 }}
+                  />
+                  <Typography
+                    variant="body1"
+                    sx={{ fontSize: '1rem', color: '#333' }}
+                  >
+                    {task.title}
+                  </Typography>
+                </Box>
                 <Typography
-                  variant="body1"
-                  sx={{ fontSize: '1rem', color: '#333' }}
+                  variant="body2"
+                  sx={{ color: '#666', fontSize: '0.8rem' }}
                 >
-                  {task.title}
+                  {convertPriority(task.priority)}
                 </Typography>
               </Box>
-              <Typography
-                variant="body2"
-                sx={{ color: '#666', fontSize: '0.8rem' }}
-              >
-                {convertPriority(task.priority)}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
-      ))}
+            ))}
+          </Box>
+        ),
+      )}
     </Box>
   );
 };
