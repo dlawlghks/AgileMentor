@@ -123,12 +123,9 @@ const ImagePlaceholder = styled.img`
   flex: 2;
   max-width: 880px;
   width: 100%;
-  height: 400px;
-  background-color: #e0e0e0;
+  height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  color: #7f8c8d;
-  font-size: 18px;
 `;
