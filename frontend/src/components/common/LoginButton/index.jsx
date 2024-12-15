@@ -29,6 +29,6 @@ const GoogleButton = styled.button`
 `;
 
 const GoogleImage = styled.img`
-  width: 140px;
+  width: 160px;
   height: 40px;
 `;
