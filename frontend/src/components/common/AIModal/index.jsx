@@ -4,13 +4,18 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useProjects } from '../../../provider/projectContext';
 
-
 const AIModal = ({ onCancel }) => {
-  const { selectedProjectId, addAIResponseData, fetchStories, fetchBacklogs, fetchSprints } = useProjects();
+  const {
+    selectedProjectId,
+    addAIResponseData,
+    fetchStories,
+    fetchBacklogs,
+    fetchSprints,
+  } = useProjects();
   const [projectDescription, setProjectDescription] = useState('');
   const [storyCount, setStoryCount] = useState('');
   const [sprintCount, setSprintCount] = useState('');
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const handleConfirm = async () => {
     if (!projectDescription || !storyCount || !sprintCount) {
@@ -30,14 +35,14 @@ const AIModal = ({ onCancel }) => {
         {
           projectDescription,
           storyCount: parseInt(storyCount, 10),
-          taskCount: parseInt(sprintCount, 10),
+          spirntCount: parseInt(sprintCount, 10),
         },
         {
           headers: {
             Cookie: document.cookie,
           },
           withCredentials: true,
-        }
+        },
       );
 
       if (response.status === 201 || response.status === 200) {

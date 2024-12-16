@@ -55,7 +55,7 @@ const IntroducePage = () => (
             backgroundColor="#FFCADC"
           />
         </CardsContainer>
-        <ImagePlaceholder src="/image/company.png" />
+        <ImagePlaceholder src="/image/agilementor.mp4" controls />
       </MainContent>
     </ContentContainer>
   </PageContainer>
@@ -119,7 +119,7 @@ const CardsContainer = styled.div`
   margin-right: 20px;
 `;
 
-const ImagePlaceholder = styled.img`
+const ImagePlaceholder = styled.video`
   flex: 2;
   max-width: 880px;
   width: 100%;
