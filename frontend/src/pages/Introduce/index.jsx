@@ -55,7 +55,7 @@ const IntroducePage = () => (
             backgroundColor="#FFCADC"
           />
         </CardsContainer>
-        <ImagePlaceholder src="/image/agilementor.mp4" controls />
+        <ImagePlaceholder src="/image/agilementorIntro.mp4" controls />
       </MainContent>
     </ContentContainer>
   </PageContainer>
