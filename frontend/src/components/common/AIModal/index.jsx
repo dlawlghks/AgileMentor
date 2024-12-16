@@ -35,7 +35,7 @@ const AIModal = ({ onCancel }) => {
         {
           projectDescription,
           storyCount: parseInt(storyCount, 10),
-          spirntcount: parseInt(sprintCount, 10),
+          sprintCount: parseInt(sprintCount, 10),
         },
         {
           headers: {
